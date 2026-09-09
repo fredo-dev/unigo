@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Registered user profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "description": "User email address" },
+        "phone": { "type": "string", "description": "User phone number" },
+        "balance": { "type": "integer", "description": "Unigo credits balance in FCFA" },
+        "role": { "type": "string", "description": "User account role" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Recharge or bundle purchase transaction record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner user UID" },
+        "type": { "type": "string", "description": "Transaction category" },
+        "operator": { "type": "string", "description": "Orange, MTN, or Moov" },
+        "recipientPhone": { "type": "string", "description": "Phone number receiving the credit" },
+        "amount": { "type": "integer", "description": "Amount in FCFA" },
+        "status": { "type": "string", "description": "Execution status" },
+        "createdAt": { "type": "string", "description": "ISO timestamp string" }
+      },
+      "required": ["userId", "type", "operator", "recipientPhone", "amount", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User document store"
+    },
+    "/transactions/{transactionId}": {
+      "schema": { "$ref": "#/entities/Transaction" },
+      "description": "Transaction history records"
+    }
+  }
+}

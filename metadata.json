@@ -1,0 +1,6 @@
+{
+  "name": "unigo.ci",
+  "description": "Plateforme moderne de transfert de crédit d'appel et d'achat de forfaits internet en Côte d'Ivoire (Orange, MTN, Moov) sécurisée avec synchronisation en base de données Supabase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
