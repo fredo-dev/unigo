@@ -1,19 +1,28 @@
-import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
-import {defineConfig} from 'vite';
 
-export default defineConfig(() => {
-  return {
-    plugins: [react(), tailwindcss()],
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, '.'),
-      },
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss()
+  ],
+  resolve: {
+    alias: {
+      '@': path.resolve(process.cwd(), './src'),
     },
-    server: {
-      hmr: process.env.DISABLE_HMR !== 'true',
-      watch: process.env.DISABLE_HMR === 'true' ? null : {},
+  },
+  build: {
+    rollupOptions: {
+      // Exclut uniquement les modules Node/Serveur stricts du bundle frontend
+      external: [
+        'express', 
+        'drizzle-orm', 
+        '@types/express', 
+        '@types/pg', 
+        '@firebase/eslint-plugin-security-rules'
+      ],
     },
-  };
+  },
 });
