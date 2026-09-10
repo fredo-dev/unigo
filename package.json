@@ -12,6 +12,7 @@
     "lint": "echo 'Pas de vérification'"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
     "esbuild": "^0.25.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
